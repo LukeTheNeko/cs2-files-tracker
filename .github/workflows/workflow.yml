@@ -2,29 +2,37 @@ name: Download CS Game Files
 
 on:
   schedule:
-  - cron: "*/15 * * * *"
-
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs: 
-    download:
-      runs-on: ubuntu-latest
+  download:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v3
       
-      permissions:
-        # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
-        contents: write
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
       
-      steps:
-        - uses: actions/checkout@master
-        - uses: actions/setup-node@v3
-        - name: Download new game files
-          run: npm install && node index.js '${{ secrets.USERNAME }}' '${{ secrets.PASSWORD }}'
-        - name: Read manifestId.txt
-          id: manifestId
-          uses: juliangruber/read-file-action@v1
-          with:
-            path: ./static/manifestId.txt
-        - name: Commit & push changes
-          uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            commit_message: "manifest ${{ steps.manifestId.outputs.content }}"
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Download new game files
+        run: npm run dev '${{ secrets.USERNAME }}' '${{ secrets.PASSWORD }}'
+      
+      - name: Read manifestId.txt
+        id: manifestId
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./static/manifestId.txt
+      
+      - name: Commit & push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "manifest ${{ steps.manifestId.outputs.content }}"
