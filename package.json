@@ -1,7 +1,7 @@
 {
   "name": "cs2-items-tracker",
   "author": "LukeTheNeko",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "cs2 items tracker",
   "main": "dist/index.js",
   "keywords": [

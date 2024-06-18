@@ -2,7 +2,6 @@ import SteamUser from 'steam-user';
 import fs from 'fs';
 import vpk from 'vpk';
 import * as parser from '@node-steam/vdf';
-import { exec } from 'child_process';
 
 const appId = 730;
 const depotId = 2347770;
@@ -23,6 +22,7 @@ const vpkFiles = [
     'resource/csgo_greek.txt',
     'resource/csgo_hungarian.txt',
     'resource/csgo_italian.txt',
+    'resource/csgo_indonesian.txt',
     'resource/csgo_japanese.txt',
     'resource/csgo_koreana.txt',
     'resource/csgo_latam.txt',
@@ -110,17 +110,14 @@ async function downloadVPKArchives(user: CustomSteamUser, manifest: any, vpkDir:
 }
 
 function trimBOM(buffer: Buffer) {
-    // Check if the Buffer starts with the BOM character
     if (
         buffer.length >= 3 &&
         buffer[0] === 0xef &&
         buffer[1] === 0xbb &&
         buffer[2] === 0xbf
     ) {
-        // Trim the first two bytes (BOM)
         return buffer.slice(3);
     } else {
-        // No BOM, return the original Buffer
         return buffer;
     }
 }
@@ -143,8 +140,6 @@ function extractVPKFiles(vpkDir: any) {
                     ''
                 );
 
-                // Remove BOM from file (https://en.wikipedia.org/wiki/Byte_order_mark)
-                // Convenience so down stream users don't have to worry about decoding with BOM
                 file = trimBOM(file);
                 file = file.toString('utf-8');
 
@@ -177,17 +172,17 @@ if (process.argv.length != 4) {
     process.exit(1);
 }
 
-if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-}
+const directories = [dir, temp];
 
-if (!fs.existsSync(temp)) {
-    fs.mkdirSync(temp);
-}
+directories.forEach(directory => {
+    if (!fs.existsSync(directory)) {
+        fs.mkdirSync(directory);
+    }
+});
 
 const user = new SteamUser() as CustomSteamUser;
 
-console.log('Logging into Steam....');
+console.log('Logging into Steam...');
 
 user.logOn({
     accountName: process.argv[2],
@@ -219,9 +214,7 @@ user.once('loggedOn', async () => {
             process.exit(0);
         }
 
-        console.log(
-            'Latest manifest Id does not match existing manifest Id, downloading game files'
-        );
+        console.log('Latest manifest Id does not match existing manifest Id, downloading game files');
 
         const manifest = await user.getManifest(
             appId,
