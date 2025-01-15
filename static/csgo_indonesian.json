@@ -28080,6 +28080,7 @@
             "SFUI_OfficialDatacenterID_44": "UE, Finlandia",
             "SFUI_OfficialDatacenterID_45": "Inggris Raya",
             "SFUI_OfficialDatacenterID_49": "Tiongkok, Guangdong",
+            "SFUI_OfficialDatacenterID_51": "Tiongkok, Beijing",
             "SFUI_UserAlert_HighPings": "Ping terbaik kamu ke server resmi adalah %s1 ms.",
             "SFUI_UserAlert_Unreachable": "Gagal terhubung ke server resmi.",
             "SFUI_UserAlert_UnreachableText": "Gagal terhubung ke server resmi. Mungkin terdapat masalah pada koneksi internet atau konfigurasi firewall kamu. Silakan verifikasi pengaturan jaringan kamu dan coba lagi.",
