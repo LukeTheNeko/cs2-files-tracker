@@ -1,8 +1,7 @@
 {
-  "name": "cs2-files-tracker",
-  "author": "LukeTheNeko",
-  "version": "1.2.0",
-  "description": "Counter Strike Files Tracker",
+  "name": "cs2data-files",
+  "version": "1.0.1",
+  "description": "Counter Strike Files Tracker For CS2Datainfo",
   "main": "dist/index.js",
   "keywords": [
     "counter-strike-2",

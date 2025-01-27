@@ -1,4 +1,4 @@
-name: Download CS Game Files
+name: Download CS2 Files
 
 on:
   schedule:
@@ -30,9 +30,9 @@ jobs:
         id: manifestId
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./static/manifestId.txt
+          path: ./public/static/manifestId.txt
       
       - name: Commit & push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "manifest ${{ steps.manifestId.outputs.content }}"
+          commit_message: "manifest: ${{ steps.manifestId.outputs.content }}"

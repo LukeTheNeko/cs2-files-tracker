@@ -1,13 +1,14 @@
 import SteamUser from 'steam-user';
 import fs from 'fs';
+import path from 'path';
 import vpk from 'vpk';
 import * as parser from '@node-steam/vdf';
 
 const appId = 730;
 const depotId = 2347770;
-const dir = './static';
+const dir = path.resolve('./public/static');
 const temp = './temp';
-const manifestIdFile = 'manifestId.txt';
+const manifestIdFile = path.join(dir, 'manifestId.txt');
 
 const vpkFiles = [
     'resource/csgo_brazilian.txt',
@@ -99,7 +100,7 @@ async function downloadVPKArchives(user: CustomSteamUser, manifest: any, vpkDir:
         const file = manifest.manifest.files.find((f: any) =>
             f.filename.endsWith(fileName)
         );
-        const filePath = `${temp}/${fileName}`;
+        const filePath = path.join(temp, fileName);
 
         const status = `[${parseInt(index) + 1}/${requiredIndices.length}]`;
 
@@ -131,9 +132,9 @@ function extractVPKFiles(vpkDir: any) {
 
     for (const f of vpkFiles) {
         let found = false;
-        for (const path of vpkDir.files) {
-            if (path.startsWith(f)) {
-                let file = vpkDir.getFile(path);
+        for (const filePath of vpkDir.files) {
+            if (filePath.startsWith(f)) {
+                let file = vpkDir.getFile(filePath);
                 const filepath = f.split('/');
                 const fileName = filepath[filepath.length - 1].replace(
                     '.txt',
@@ -147,7 +148,7 @@ function extractVPKFiles(vpkDir: any) {
 
                 try {
                     fs.writeFileSync(
-                        `${dir}/${fileName}.json`,
+                        path.join(dir, `${fileName}.json`),
                         JSON.stringify(parsedData, null, 4)
                     );
                 } catch (err) {
@@ -202,7 +203,7 @@ user.once('loggedOn', async () => {
         let existingManifestId = '';
 
         try {
-            existingManifestId = fs.readFileSync(`${dir}/${manifestIdFile}`, 'utf-8');
+            existingManifestId = fs.readFileSync(manifestIdFile, 'utf-8');
         } catch (err) {
             if ((err as NodeJS.ErrnoException).code != 'ENOENT') {
                 throw err;
@@ -228,7 +229,7 @@ user.once('loggedOn', async () => {
         extractVPKFiles(vpkDir);
 
         try {
-            fs.writeFileSync(`${dir}/${manifestIdFile}`, latestManifestId);
+            fs.writeFileSync(manifestIdFile, latestManifestId);
         } catch (err) {
             throw err;
         }
