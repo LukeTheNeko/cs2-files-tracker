@@ -2584,6 +2584,7 @@
             "season_progress_title": "PROGRES MUSIM",
             "season_progress_high_rank": "Rating CS tertinggi yang dicapai di musim ini",
             "season_progress_bar_title": "Pertandingan Dimenangkan",
+            "season_wins": "<b>{d:wins}</b> / {d:threshold}",
             "season_progress_tooltip-title": "Progres Musim",
             "season_progress_tooltip-body": "Ketika Musim berakhir, pemain yang memenuhi syarat akan dianugerahi Medali Premier Musim.<br><br>Warna medali akan mengikuti warna Rating CS tertinggi yang dicapai selama musim tersebut, dan jumlah batang akan mencerminkan total kemenanganmu, satu batang untuk setiap 25 kemenangan, dan kamu bisa mendapatkan hingga 5 batang.<br><br>Untuk mendapatkan Medali Premier Musim 2, kamu membutuhkan akun dengan reputasi yang baik, 25 kemenangan pertandingan Premier, dan Rating CS yang aktif di akhir musim.",
             "CSGO_Operation_Maps_Season_4_Active": "Map di Grup Active Duty adalah Dust II, Nuke, Mirage, Inferno, Cobblestone, Overpass, Cache.",
