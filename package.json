@@ -1,14 +1,13 @@
 {
-  "name": "cs2data-files",
-  "version": "1.0.1",
-  "description": "Counter Strike Files Tracker For CS2Datainfo",
+  "name": "cs2-files-tracker",
+  "version": "1.0.2",
+  "description": "Counter Strike Files Tracker",
   "main": "dist/index.js",
   "keywords": [
     "counter-strike-2",
     "counter-strike",
     "counter",
     "strike",
-    "csgo",
     "cs2",
     "files",
     "tracker"
