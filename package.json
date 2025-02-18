@@ -1,16 +1,15 @@
 {
   "name": "cs2-files-tracker",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Counter Strike Files Tracker",
   "main": "dist/index.js",
   "keywords": [
     "counter-strike-2",
     "counter-strike",
-    "counter",
-    "strike",
     "cs2",
     "files",
-    "tracker"
+    "tracker",
+    "cs2-files-tracker"
   ],
   "scripts": {
     "build": "tsc",
@@ -20,13 +19,13 @@
   "license": "MIT",
   "dependencies": {
     "@node-steam/vdf": "^2.2.0",
-    "steam-user": "^5.0.10",
+    "steam-user": "^5.2.0",
     "vpk": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.14.2",
-    "@types/steam-user": "^5.0.0",
+    "@types/node": "^20.17.19",
+    "@types/steam-user": "^5.0.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.7.3"
   }
 }
