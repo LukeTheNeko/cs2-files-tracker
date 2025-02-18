@@ -4,6 +4,9 @@ temp
 exceptions.txt
 accounts.txt
 accounts.json
+.env
+.env.development 
+.env.production
 
 *.rar
 *.zip

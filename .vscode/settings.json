@@ -4,7 +4,5 @@
       ".env": ".env.development, .env.production, .env.test, .env.example, .env.dev",
       "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, tsconfig.json, .eslintrc.json, .gitignore, LICENSE",
     },
-    "typescript.suggest.autoImports": true,
-    "window.title": "${rootName}${separator}${appName}",
     "files.autoSave": "afterDelay",
   }
